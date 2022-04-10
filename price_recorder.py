@@ -32,6 +32,3 @@ class Price_Recorder():
 if __name__ == '__main__':
     obj = Price_Recorder()
     obj.start(coin_symbol='LRCUSDT')
-    while True:
-        print('hi')
-        time.sleep(2)
