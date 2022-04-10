@@ -4,6 +4,7 @@ from binance import Client
 import csv
 import time
 import threading
+from datetime import datetime
 
 class Price_Recorder():
 
@@ -14,11 +15,13 @@ class Price_Recorder():
 
     def begin_price_recording(self, coin_symbol = "BTCUSDT"):
         lrcprice = self.client.get_symbol_ticker(symbol=coin_symbol)
-        headersCSV = ['symbol','price','time']
+        headersCSV = ['symbol','price','time', 'date']
+        now = datetime.now()
         while True:
             with open("price_history/lrc_price_history.csv", 'a', newline='') as f:
                 dictwriter_object = csv.DictWriter(f, fieldnames=headersCSV)
                 lrcprice['time'] = time.time()
+                lrcprice['date'] = now.strftime('%b-%d-%Y %H:%M:%S')
                 dictwriter_object.writerow(lrcprice)
                 print(lrcprice)
                 time.sleep(5)
@@ -32,3 +35,5 @@ class Price_Recorder():
 if __name__ == '__main__':
     obj = Price_Recorder()
     obj.start(coin_symbol='LRCUSDT')
+    while (1):
+        pass
