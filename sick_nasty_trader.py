@@ -3,6 +3,7 @@
 
 import numpy as np
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
+import csv
 
 
 
@@ -10,9 +11,9 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 # Apply ML/AI techniques to find suitable coefficients of the mass spring dampener.
 # Possibly have some sort of volume (trading, issued, etc.) as mass?
 print('------------------------------------------')
-api_key = str("Xz5FMQ1Sdena0pN223ZsjL5eMRbslgbkMLAj8wz5CeKLSXJOGpQHxnziVSwIKFzN")
-apt_sec = str("W5Em8CrGyLF1vnQBzXg1mjCz9n33GZoHtOBbjlk6sxkINaoHjkCL4AVo4akXuhHk")
-client = Client(api_key, apt_sec)
+api_key = "GCswSd13dQUyfUrxmwH0TQvMUxv9SXWR3AEaL8yuMI9VYXgYNZtWmKo42mFLEaZc"
+apt_sec = "QmfCSucR9TxDefDIWG9yDF7SXjxMC1kr3UvcDrHUOzJ0RT8tAMmhMdpHM1fOFhsi"
+client = Client(api_key, apt_sec, tld='us')
 
 # get market depth
 depth = client.get_order_book(symbol='BNBBTC')
@@ -20,7 +21,9 @@ depth = client.get_order_book(symbol='BNBBTC')
 
 # get all symbol prices
 lrcprice = client.get_symbol_ticker(symbol='LRCUSDT')
+user = client.get_account()
 print(lrcprice)
+print(user)
 
 
 
