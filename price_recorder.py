@@ -34,6 +34,6 @@ class Price_Recorder():
 
 if __name__ == '__main__':
     obj = Price_Recorder()
-    obj.start(coin_symbol='LRCUSDT')
+    obj.start(coin_symbol='LRCUSD')
     while (1):
         pass

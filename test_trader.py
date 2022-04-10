@@ -4,7 +4,7 @@
 import numpy as np
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 import csv
-
+import time
 
 
 # Model stock market movement as a mass-spring-dampener system on a moving base.
@@ -18,8 +18,11 @@ client = Client(api_key, apt_sec, tld='us')
 # get all symbol prices
 lrcprice = client.get_symbol_ticker(symbol='LRCUSDT')
 user = client.get_account()
-print(lrcprice)
-print(user)
 
 
-
+while True:
+    trades = client.get_recent_trades(symbol='LRCUSD')
+    avg_price = client.get_avg_price(symbol='LRCUSD')
+    lrcprice = client.get_symbol_ticker(symbol='LRCUSD')
+    print(trades[499])
+    time.sleep(5)
