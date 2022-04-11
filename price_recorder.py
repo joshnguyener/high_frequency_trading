@@ -14,13 +14,13 @@ class Price_Recorder():
         self.client = Client(api_key, apt_sec, tld='us')
 
     def begin_price_recording(self, coin_symbol = "BTCUSDT"):
-        lrcprice = self.client.get_symbol_ticker(symbol=coin_symbol)
         headersCSV = ['symbol','price','time', 'date']
-        now = datetime.now()
         while True:
-            with open("price_history/lrc_price_history.csv", 'a', newline='') as f:
+            with open("C:/Users/jngu114/OneDrive - Louisiana State University/8. Personal/Stock_Price_History/eth_price_histroy.csv", 'a', newline='') as f:
+                lrcprice = self.client.get_symbol_ticker(symbol=coin_symbol)
                 dictwriter_object = csv.DictWriter(f, fieldnames=headersCSV)
                 lrcprice['time'] = time.time()
+                now = datetime.now()
                 lrcprice['date'] = now.strftime('%b-%d-%Y %H:%M:%S')
                 dictwriter_object.writerow(lrcprice)
                 print(lrcprice)
@@ -34,6 +34,6 @@ class Price_Recorder():
 
 if __name__ == '__main__':
     obj = Price_Recorder()
-    obj.start(coin_symbol='LRCUSD')
+    obj.start(coin_symbol='ETHUSD')
     while (1):
         pass
